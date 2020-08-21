@@ -8,7 +8,7 @@
         class="todo"
       >
         {{ todo.title }}
-        <i class="fas fa-trash-alt"></i>
+        <i @click="deleteTodo(todo.id)" class="fas fa-trash-alt"></i>
       </div>
     </div>
 </div>
@@ -20,7 +20,7 @@ export default {
   name: "Todos",
   computed : mapGetters(['allTodos']),
   methods: {
-    ...mapActions(['fetchTodos'])
+    ...mapActions(['fetchTodos','deleteTodo'])
   },
   created() {
     this.fetchTodos();
