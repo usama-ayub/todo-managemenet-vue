@@ -1,13 +1,30 @@
 <template>
 <div>
-    Todos
+   <h3>Todos</h3>
+    <div class="todos">
+      <div
+        v-for="todo in allTodos"
+        :key="todo.id"
+        class="todo"
+      >
+        {{ todo.title }}
+        <i class="fas fa-trash-alt"></i>
+      </div>
+    </div>
 </div>
 </template>
 
 <script>
-// import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Todos",
+  computed : mapGetters(['allTodos']),
+  methods: {
+    ...mapActions(['fetchTodos'])
+  },
+  created() {
+    this.fetchTodos();
+  }
   }
 </script>
 
